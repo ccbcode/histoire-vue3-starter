@@ -40,17 +40,6 @@ const props = defineProps({
   }
 })
 
-const themeClass = computed(() => {
-  switch (props.theme) {
-    case 'light-primary': return 'bg-blue-50 text-blue-900'
-    case 'dark-primary': return 'bg-blue-900 text-white'
-    case 'white': return 'bg-white text-black'
-    case 'light-secondary': return 'bg-pink-50 text-pink-900'
-    case 'dark-secondary': return 'bg-pink-900 text-white'
-    default: return ''
-  }
-})
-
 const positionClass = computed(() => {
   switch (props.position) {
     case 'left': return 'justify-start'
@@ -61,37 +50,39 @@ const positionClass = computed(() => {
 })
 </script>
 
-
-
 <template>
   <div
     :class="[
+      `theme-${theme}`,
+      'theme-content',
       'flex flex-wrap items-center gap-6 p-8 rounded-xl transition-all',
-      positionClass,
-      themeClass
+      positionClass
     ]"
   >
     <!-- Media Block -->
     <div
       v-if="media"
-      class="w-full md:w-1/2 aspect-video bg-blue-100 rounded-xl flex items-center justify-center"
+      class="w-full md:w-1/2 aspect-video rounded-xl flex items-center justify-center theme-media"
     >
-      <div class="text-sm text-blue-300">
+      <div class="text-sm opacity-70">
         {{ mediaType === 'video' ? '🎥 Video' : '🖼️ Image' }}
       </div>
     </div>
 
     <!-- Text Block -->
     <div v-if="showContent" class="w-full md:w-1/2 space-y-4 text-left">
-      <div v-if="label" class="inline-block px-3 py-1 border text-xs rounded-full">
+      <div
+        v-if="label"
+        class="inline-block px-3 py-1 border text-xs rounded-full theme-label"
+      >
         Tag
       </div>
 
-      <h2 v-if="title" class="text-xl font-bold text-gray-900 dark:text-white">
+      <h2 v-if="title" class="text-xl font-bold">
         This is a H1 Title in a content
       </h2>
 
-      <p v-if="text" class="text-sm text-gray-600 dark:text-gray-300">
+      <p v-if="text" class="text-sm opacity-80">
         This is a text description that we filled with lorem ipsum to illustrate content...
       </p>
 
@@ -104,7 +95,7 @@ const positionClass = computed(() => {
         </button>
         <button
           v-if="buttons >= 2"
-          class="border border-gray-700 text-gray-900 dark:text-white px-4 py-2 rounded font-semibold"
+          class="border px-4 py-2 rounded font-semibold theme-button-secondary"
         >
           Button 2
         </button>
@@ -112,3 +103,24 @@ const positionClass = computed(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.theme-content {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-label {
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+.theme-media {
+  background-color: var(--theme-border);
+}
+
+.theme-button-secondary {
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+</style>
