@@ -1,8 +1,7 @@
-// tailwind.config.js
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ['./src/**/*.{html,js,vue}'],
+  content: ['./src/**/*.{html,js,ts,vue}'],
   safelist: [
     {
       pattern: /theme-(white|light-primary|dark-primary|light-secondary|dark-secondary)/,
@@ -10,6 +9,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Georgia', 'ui-serif', 'serif'],
+        mono: ['SFMono-Regular', 'ui-monospace', 'monospace'],
+        poppins: ['Poppins', 'sans-serif']
+      }, 
       colors: {
         theme: {
           white: {

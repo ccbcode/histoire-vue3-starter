@@ -54,7 +54,7 @@ const positionClass = computed(() => {
   <div
     :class="[
       `theme-${theme}`,
-      'theme-content',
+      'theme-base',
       'flex flex-wrap items-center gap-6 p-8 rounded-xl transition-all',
       positionClass
     ]"
@@ -62,7 +62,7 @@ const positionClass = computed(() => {
     <!-- Media Block -->
     <div
       v-if="media"
-      class="w-full md:w-1/2 aspect-video rounded-xl flex items-center justify-center theme-media"
+      class="w-full md:w-1/2 aspect-video rounded-xl flex items-center justify-center theme-border"
     >
       <div class="text-sm opacity-70">
         {{ mediaType === 'video' ? '🎥 Video' : '🖼️ Image' }}
@@ -73,16 +73,16 @@ const positionClass = computed(() => {
     <div v-if="showContent" class="w-full md:w-1/2 space-y-4 text-left">
       <div
         v-if="label"
-        class="inline-block px-3 py-1 border text-xs rounded-full theme-label"
+        class="inline-block px-3 py-1 border text-xs rounded-full theme-border"
       >
         Tag
       </div>
 
-      <h2 v-if="title" class="text-xl font-bold">
+      <h1 v-if="title">
         This is a H1 Title in a content
-      </h2>
+      </h1>
 
-      <p v-if="text" class="text-sm opacity-80">
+      <p v-if="text">
         This is a text description that we filled with lorem ipsum to illustrate content...
       </p>
 
@@ -103,24 +103,3 @@ const positionClass = computed(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.theme-content {
-  background-color: var(--theme-bg);
-  color: var(--theme-text);
-}
-
-.theme-label {
-  border-color: var(--theme-border);
-  color: var(--theme-text);
-}
-
-.theme-media {
-  background-color: var(--theme-border);
-}
-
-.theme-button-secondary {
-  border-color: var(--theme-border);
-  color: var(--theme-text);
-}
-</style>

@@ -1,0 +1,18 @@
+.theme-base {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-border {
+  border-color: var(--theme-border);
+}
+
+.theme-muted {
+  color: var(--theme-muted, var(--theme-text));
+  opacity: 0.7;
+}
+
+.theme-button-secondary {
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
