@@ -92,7 +92,7 @@ button::before {
   position: absolute;
   inset: 0;
   background-color: var(--theme-hover);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   transform: translateX(-100%);
   transition: transform 0.4s ease-in-out;
   z-index: -1;
