@@ -22,6 +22,18 @@ const props = defineProps({
   theme: {
     type: String,
     default: 'white'
+  },
+  showIcon: {
+    type: Boolean,
+    default: true
+  },
+  showTitle: {
+    type: Boolean,
+    default: true
+  },
+  showDescription: {
+    type: Boolean,
+    default: true
   }
 })
 
@@ -36,7 +48,7 @@ const resolvedTheme = computed(() => {
     case 'primary':
       return 'dark-primary'
     case 'secondary':
-      return 'white'
+      return 'light-secondary'
     default:
       return props.theme
   }
@@ -54,10 +66,13 @@ const resolvedTheme = computed(() => {
     <div class="flex justify-between items-start gap-4">
       <!-- Left side: Icon + Text -->
       <div class="flex gap-3">
-        <div class="text-xl pt-1">{{ icon }}</div>
+        <div v-if="showIcon" class="text-xl pt-1">{{ icon }}</div>
         <div class="space-y-2 max-w-xl">
-          <h3 class="font-semibold text-lg">{{ title }}</h3>
-          <p v-if="!dropdown || isOpen" class="text-sm leading-relaxed">
+          <h3 v-if="showTitle" class="font-semibold text-lg">{{ title }}</h3>
+          <p
+            v-if="showDescription && (!dropdown || isOpen)"
+            class="text-sm leading-relaxed"
+          >
             {{ description }}
           </p>
         </div>

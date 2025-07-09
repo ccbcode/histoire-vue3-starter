@@ -3,8 +3,12 @@ import { reactive } from 'vue'
 import Feature from './Feature.vue'
 
 const state = reactive({
-  theme: 'white',
+  theme: 'secondary',
   dropdown: true,
+  showIcon: true,
+  showTitle: true,
+  showDescription: true,
+  count: 1
 })
 </script>
 
@@ -12,50 +16,30 @@ const state = reactive({
   <Story title="Feature" auto-props-disabled>
     <Variant title="Default">
       <template #default>
-        <div class="space-y-4 max-w-2xl mx-auto">
+        <div class="space-y-4">
           <Feature
-            v-for="(feature, index) in features"
-            :key="index"
+            v-for="n in state.count"
+            :key="n"
+            icon="☂️"
+            title="Expertise sur les risques complexes"
+            description="Votre client a envie d’évoluer vers une nouvelle pratique ? Ce contrat est le plus complet du marché. Votre client a envie d’évoluer vers une nouvelle pratique ?"
             :theme="state.theme"
             :dropdown="state.dropdown"
-            :title="feature.title"
-            :description="feature.description"
-            :icon="feature.icon"
+            :showIcon="state.showIcon"
+            :showTitle="state.showTitle"
+            :showDescription="state.showDescription"
           />
         </div>
       </template>
 
       <template #controls>
-        <HstSelect
-          v-model="state.theme"
-          title="Theme"
-          :options="['white', 'dark-primary']"
-        />
-        <HstCheckbox
-          v-model="state.dropdown"
-          title="Dropdown"
-        />
+        <HstSelect v-model="state.theme" title="Theme" :options="['primary', 'secondary']" />
+        <HstCheckbox v-model="state.dropdown" title="Dropdown" />
+        <HstCheckbox v-model="state.showIcon" title="Show Icon" />
+        <HstCheckbox v-model="state.showTitle" title="Show Title" />
+        <HstCheckbox v-model="state.showDescription" title="Show Description" />
+        <HstSelect v-model="state.count" title="Count" :options="[1, 2, 3]" />
       </template>
     </Variant>
   </Story>
 </template>
-
-<script>
-const features = [
-  {
-    title: 'Souscription simplifiée et en ligne',
-    description: 'Votre client a envie d’évoluer vers une nouvelle pratique ? Ce contrat est le plus complet du marché.',
-    icon: '☂️'
-  },
-  {
-    title: 'Gestion des contrats facilitée',
-    description: 'Tous vos contrats accessibles en ligne, avec une gestion simplifiée.',
-    icon: '👮‍♂️'
-  },
-  {
-    title: 'Outils d’aide à la vente',
-    description: 'Profitez de supports commerciaux automatisés pour maximiser votre efficacité.',
-    icon: '🦀'
-  }
-]
-</script>

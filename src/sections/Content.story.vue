@@ -4,7 +4,7 @@ import Content from './Content.vue'
 
 const state = reactive({
   theme: 'white',
-  position: 'right',
+  position: 'left',
   showContent: true,
   label: true,
   title: true,

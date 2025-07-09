@@ -45,9 +45,9 @@ module.exports = {
             disabledBorder: '#EEF0F7',
           },
           'light-secondary': {
-            bg: '#F4F5FB',
+            bg: '#F9FAFC',
             text: '#170B3D',
-            border: '#fbcfe8',
+            border: '#F9FAFC',
           },
           'dark-secondary': {
             bg: '#170B3D',
