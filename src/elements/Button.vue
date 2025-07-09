@@ -80,10 +80,45 @@ const overrideStyle = computed(() => {
 </template>
 
 <style scoped>
-/* Only works when no inline backgroundColor is set */
-button:enabled:hover {
+button {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Slanted background layer */
+button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-color: var(--theme-hover);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: -1;
+}
+
+/* Slide in on hover (only for enabled/default) */
+button:enabled:hover::before {
+  transform: translateX(0);
+}
+
+button:hover::before {
+  transform: translateX(0);
+}
+
+/* Ensure text sits above */
+button > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Text color transition */
+button:enabled {
+  transition: color 0.4s ease-in-out;
+}
+
+button:enabled:hover {
   color: var(--theme-hoverText);
-  border-color: var(--theme-hoverBorder);
 }
 </style>
